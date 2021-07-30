@@ -52,13 +52,13 @@ public class SearchPage {
         driver.findElement((By.xpath(setTextValueInSelector_byXPath(mileage)))).click();
     }
 
-    void isFiltersCorrect(String filters){
+    void isFiltersCorrect_for3filters(String filters, String filter_1, String filter_2, String filter_3){
         for (Object data : getArrayTextsFromSelectors_byCSS(driver, filters)){
             String a = data.toString();
 
-            if(a.substring(a.length()-mileage.length()).equals(mileage)
-                || a.substring(a.length()-modelGolf.length()).equals(modelGolf)
-                || a.substring(a.length()-brandVolkswagen.length()).equals(brandVolkswagen));
+            if(a.substring(a.length()-filter_1.length()).equals(filter_1)
+                || a.substring(a.length()-filter_2.length()).equals(filter_2)
+                || a.substring(a.length()-filter_3.length()).equals(filter_3));
             else throw new AssertionError("Filter's can't be applied!");
         }
     }
@@ -73,7 +73,7 @@ public class SearchPage {
         clickOnMaxMileageFilter();
         selectMileage();
         clickOnBasicFilter();
-        isFiltersCorrect(filters_byCSS);
+        isFiltersCorrect_for3filters(filters_byCSS, mileage, brandVolkswagen, modelGolf);
         closeDriver();
     }
 }
